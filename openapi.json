@@ -1,0 +1,193 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Torneo de tenis",
+        "description": "Geopagos challenge",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/"
+        }
+    ],
+    "paths": {
+        "/api/players/all": {
+            "get": {
+                "tags": [
+                    "Jugadores"
+                ],
+                "description": "Obtiene una lista de los jugadores",
+                "operationId": "dbbdedffba8e04e6d0426d7dbae0b58c",
+                "responses": {
+                    "200": {
+                        "description": "Lista de jugadores"
+                    }
+                }
+            }
+        },
+        "/api/players/view/{id}": {
+            "get": {
+                "tags": [
+                    "Jugadores"
+                ],
+                "description": "Obtiene el detalle de un jugador",
+                "operationId": "63e18fde4eb9890e5bbc662cd10289df",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del jugador",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del jugador"
+                    }
+                }
+            }
+        },
+        "/api/players/create": {
+            "post": {
+                "tags": [
+                    "Jugadores"
+                ],
+                "description": "Crea nuevo jugador",
+                "operationId": "009eb4a241e2c85e2ef8c56b4b2af840",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Nombre"
+                                    },
+                                    "tipo": {
+                                        "description": "0 = Masculino, 1 = Femenino",
+                                        "type": "integer",
+                                        "enum": [
+                                            0,
+                                            1
+                                        ]
+                                    },
+                                    "habilidad": {
+                                        "type": "integer",
+                                        "example": 80
+                                    },
+                                    "fuerza": {
+                                        "type": "integer",
+                                        "example": 80
+                                    },
+                                    "velocidad": {
+                                        "type": "integer",
+                                        "example": 80
+                                    },
+                                    "reaccion": {
+                                        "type": "integer",
+                                        "example": 80
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Jugador creado"
+                    }
+                }
+            }
+        },
+        "/api/torneos/all": {
+            "get": {
+                "tags": [
+                    "Torneos"
+                ],
+                "description": "Obtinene una lista de los torneos",
+                "operationId": "979d78371b396206ce5f48f23554fa54",
+                "responses": {
+                    "200": {
+                        "description": "Lista de los torneos"
+                    }
+                }
+            }
+        },
+        "/api/torneos/view/{id}": {
+            "get": {
+                "tags": [
+                    "Torneos"
+                ],
+                "description": "Obtiene el detalle de un torneo",
+                "operationId": "c0554d6deb838dae458cd9239799b3b4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del torneo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del torneo"
+                    }
+                }
+            }
+        },
+        "/api/torneos/create": {
+            "post": {
+                "tags": [
+                    "Torneos"
+                ],
+                "description": "Crea nuevo torneo y obtiene un ganador",
+                "operationId": "291b236d2978b898899456dc6bc100be",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Grand Slam"
+                                    },
+                                    "tipo": {
+                                        "description": "0 = Masculino, 1 = Femenino",
+                                        "enum": [
+                                            "0",
+                                            "1"
+                                        ]
+                                    },
+                                    "jugadores": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": "[1,2,3,4,5,6,7,8]"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ID del ganador"
+                    }
+                }
+            }
+        }
+    }
+}
