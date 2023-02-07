@@ -5,3 +5,4 @@
 4. docker exec geopagos_php composer install
 > instalación: npm i -g open-swagger-ui
 5. open-swagger-ui ./openapi.json --open
+6. Abrir en el navegador http://localhost:[puerto swagger]
